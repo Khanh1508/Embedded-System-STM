@@ -63,8 +63,8 @@ all: main-build
 main-build: Application2.elf secondary-outputs
 
 # Tool invocations
-Application2.elf Application2.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSTM\Application2\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Application2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSTM\Application2\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Application2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Application2.elf Application2.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSystem\Application2\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Application2.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSystem\Application2\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Application2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -63,8 +63,8 @@ all: main-build
 main-build: updatefw.elf secondary-outputs
 
 # Tool invocations
-updatefw.elf updatefw.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSTM\updatefw\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "updatefw.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSTM\updatefw\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="updatefw.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+updatefw.elf updatefw.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSystem\updatefw\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "updatefw.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSystem\updatefw\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="updatefw.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -66,8 +66,8 @@ all: main-build
 main-build: gpio_hal.elf secondary-outputs
 
 # Tool invocations
-gpio_hal.elf gpio_hal.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSTM\gpio_hal\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "gpio_hal.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSTM\gpio_hal\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gpio_hal.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+gpio_hal.elf gpio_hal.map: $(OBJS) $(USER_OBJS) D:\EmbeddedSystem\gpio_hal\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "gpio_hal.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\EmbeddedSystem\gpio_hal\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gpio_hal.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

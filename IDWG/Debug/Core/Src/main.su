@@ -1,0 +1,5 @@
+../Core/Src/main.c:3:6:gpio_d12_init	16	static
+../Core/Src/main.c:12:6:gpio_button_init	24	static
+../Core/Src/main.c:22:5:gpio_button_read	16	static
+../Core/Src/main.c:31:6:rcc_init	24	static
+../Core/Src/main.c:55:5:main	8	static

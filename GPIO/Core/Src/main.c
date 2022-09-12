@@ -579,6 +579,23 @@ uint32_t adc_read()
 	return *DR;
 }
 
+
+       /*RRC*/
+void rcc_init()
+{
+	uint32_t* KR=(uint32_t*)0x40003000;
+	*KR=0x5555;//unlock PR and RLR register
+
+	uint32_t* PR=(uint32_t*)0x40003004;
+	*PR=40-1; // Divide 40MHZ  1/4.10^-3 :40 = 1ms / count
+
+	uint32_t* RLR=(uint32_t*)0x40003008;
+	*RLR=4000;// thres value 4000ms
+
+	*KR=0xCCCC;//Enable
+
+}
+
                       /*Main Function*/
 int main()
 {
@@ -622,7 +639,7 @@ int main()
      i2c_init();
      i2c_ss_id=i2c_read();
      adc_init();
-
+     rcc_init();
       /* Code erase and program on Flash
        flash_erase(SECTION_7);
        program_flash(0x08060000,msg,sizeof(msg));
@@ -643,6 +660,7 @@ int main()
         	adc_start();
         	adc_data=adc_read();   //get 12 bit --> 2^12 =4096 => uint16
             //Var adc_data has to declare as global ->Cuz declare in while can not read data
+
         }
      return 0;
 }
@@ -739,6 +757,7 @@ void uart2_handler() // Khi co data gui xuong ,jump into this function instead o
 	uart_rx_index++;// moi lan doc bo vao vung nho tiep theo
 	*SR &=~(1<<5);
 }
+
 
 
 

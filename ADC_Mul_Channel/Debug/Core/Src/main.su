@@ -1,0 +1,4 @@
+../Core/Src/main.c:7:6:adc_init	48	static
+../Core/Src/main.c:54:6:adc_start	16	static
+../Core/Src/main.c:60:10:adc_read	16	static
+../Core/Src/main.c:68:6:main	8	static
