@@ -30,43 +30,40 @@ int gpio_button_read()
 
 void rcc_init()
 {
-	uint32_t* CSR=(uint32_t*)0x40023874;
-	*CSR|=(1<<0);//LSI ON
-
-//	uint32_t* CR=(uint32_t*)0x40023800;
-//	*CR|=(0b01<<21);//
-
-
-
 	uint32_t* KR=(uint32_t*)0x40003000;
 	*KR=0x5555;//unlock PR and RLR register
 
 	uint32_t* PR=(uint32_t*)0x40003004;
-	*PR=29-1; // Divide 32KHZ  1/32.10^-3 =31,35 ms-> /30 =1,0416 ms
+	*PR=(0b011<<0); // Divide 32KHZ  1/32.10^-3
 	//*PR=(3<<0);
 	uint32_t* RLR=(uint32_t*)0x40003008;
 	*RLR=4000;// thres value 4000ms
 
 	*KR=0xCCCC;//Enable
-
-
 }
 
+void stop_IWDG()
+{
+	uint32_t* KR=(uint32_t*)0x40003000;
+	*KR=0xAAAA;//unlock PR and RLR register
+}
 int main(void)
 {
   HAL_Init();
   gpio_d12_init();
   gpio_button_init();
-  rcc_init();
-
+rcc_init();
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
 	  HAL_Delay(500);
 	  if(gpio_button_read(GPIOA, GPIO_PIN_0)==1) //If press button, program will be stacked-->after 4S Led On again
 	  {
+
 		  while(1);
 	  }
+	  stop_IWDG(); //Reset IWDG
+
   }
 
 }
